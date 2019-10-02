@@ -8,7 +8,7 @@
 
 import CEPCombine
 
-class TouchEvent: Event {
+class TouchEvent: CBEvent {
     var timestamp: Date
     var data: TouchType
     

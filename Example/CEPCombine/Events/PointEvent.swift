@@ -9,7 +9,7 @@
 import CEPCombine
 import UIKit
 
-class PointEvent: Event {
+class PointEvent: CBEvent {
     var timestamp: Date
     var data: CGPoint
 

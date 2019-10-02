@@ -15,13 +15,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let point = EventManager
+        let point = CBEventManager
             .getEvents(onType: PointEvent.self)
             .stream
             .filter({ $0.data.y > 100 })
             .followedBy(predicate: { $0.data.x < $1.data.x })
         
-        let touch = EventManager
+        let touch = CBEventManager
             .getEvents(onType: TouchEvent.self)
             .stream
         
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         }
         
         
-        EventManager
+        CBEventManager
             .getEvents(onType: PointEvent.self)
             .stream
             .collect(10)
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
                 print(values)
             })
         
-        EventManager
+        CBEventManager
             .getEvents(onType: PointEvent.self)
             .stream
             .collect(10)
@@ -60,12 +60,12 @@ extension ViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let point = t.location(in: self.view)
-            EventManager.addEvent(event: PointEvent(data: point))
+            CBEventManager.addEvent(event: PointEvent(data: point))
         }
-        EventManager.addEvent(event: TouchEvent(data: .began))
+        CBEventManager.addEvent(event: TouchEvent(data: .began))
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        EventManager.addEvent(event: TouchEvent(data: .ended))
+        CBEventManager.addEvent(event: TouchEvent(data: .ended))
     }
 }

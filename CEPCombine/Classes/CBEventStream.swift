@@ -1,5 +1,5 @@
 //
-//  EventStream.swift
+//  CBEventStream.swift
 //  CEPCombine
 //
 //  Created by Isaac Douglas on 12/09/19.
@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-public class EventStream<T> {
+public class CBEventStream<T> {
     
     fileprivate let publisher: Publishers.Map<NotificationCenter.Publisher, T>
     

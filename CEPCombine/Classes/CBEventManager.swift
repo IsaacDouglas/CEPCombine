@@ -1,5 +1,5 @@
 //
-//  EventManager.swift
+//  CBEventManager.swift
 //  CEPCombine
 //
 //  Created by Isaac Douglas on 12/09/19.
@@ -9,18 +9,18 @@
 import Foundation
 import Combine
 
-public class EventManager {
+public class CBEventManager<T: CBEvent> {
     
-    public static func getEvents<T: Event>(onType type: T.Type) -> EventStream<T> {
+    public static func getEvents(onType type: T.Type) -> CBEventStream<T> {
         let publisher = NotificationCenter
             .default
             .publisher(for: Notification.Name(type.identifier))
             .map({ $0.object as! T })
         
-        return EventStream(publisher)
+        return CBEventStream(publisher)
     }
     
-    public static func addEvent<T: Event>(event: T) {
+    public static func addEvent(event: T) {
         NotificationCenter
             .default
             .post(name: Notification.Name(T.identifier), object: event)

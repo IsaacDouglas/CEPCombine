@@ -46,12 +46,11 @@ extension Publisher {
         
         let second = stream
             .map({ $0 as Any })
-
-        _ = first
+        
+        first
             .merge(with: second)
             .collect(2)
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { _ in }, receiveValue: { values in
+            .subscribe(completion: { values in
                 guard
                     let f = values.first(where: { $0 is Self.Output }).map({ $0 as! Self.Output }),
                     let s = values.first(where: { $0 is T.Output }).map({ $0 as! T.Output })
@@ -60,7 +59,7 @@ extension Publisher {
             })
     }
     
-    public func duplicate(_ count: Int) -> [Self] {
+    public func duplicate(_ count: Int = 2) -> [Self] {
         return (0 ..< count)
             .map({ _ in self })
     }

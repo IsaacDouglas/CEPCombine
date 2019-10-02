@@ -1,5 +1,5 @@
 //
-//  Event.swift
+//  CBEvent.swift
 //  CEPCombine
 //
 //  Created by Isaac Douglas on 10/09/19.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol Event {
+public protocol CBEvent {
     var timestamp: Date { get set }
 }
 
-extension Event {
+extension CBEvent {
     static var identifier: String {
         return String(describing: self)
     }
