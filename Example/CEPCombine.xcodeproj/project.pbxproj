@@ -13,7 +13,10 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		8225990FE0FB2B6C784A72A0 /* Pods_CEPCombine_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7B4B725407923A235B111E2 /* Pods_CEPCombine_Example.framework */; };
+		90123E5D23443583008A4FDC /* Pods_CEPCombine_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90123E5C23443583008A4FDC /* Pods_CEPCombine_Example.framework */; };
+		90123E5E23443583008A4FDC /* Pods_CEPCombine_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90123E5C23443583008A4FDC /* Pods_CEPCombine_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90123E64234435E4008A4FDC /* PointEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90123E62234435E4008A4FDC /* PointEvent.swift */; };
+		90123E65234435E4008A4FDC /* TouchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90123E63234435E4008A4FDC /* TouchEvent.swift */; };
 		AC3D1B9E5A4DB7BFC5981B89 /* Pods_CEPCombine_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130676687F54FA8F9520E0DD /* Pods_CEPCombine_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,9 +30,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		90123E5F23443584008A4FDC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				90123E5E23443583008A4FDC /* Pods_CEPCombine_Example.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		130676687F54FA8F9520E0DD /* Pods_CEPCombine_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CEPCombine_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A627EF1FB3FE3E00ECC1A91 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4A627EF1FB3FE3E00ECC1A91 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5973E7E9634E23F6CA5BAE14 /* Pods-CEPCombine_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEPCombine_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEPCombine_Example/Pods-CEPCombine_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* CEPCombine_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CEPCombine_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,12 +58,16 @@
 		607FACE51AFB9204008FA782 /* CEPCombine_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CEPCombine_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		90123E582344342F008A4FDC /* CEPCombine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CEPCombine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90123E5C23443583008A4FDC /* Pods_CEPCombine_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CEPCombine_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90123E62234435E4008A4FDC /* PointEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointEvent.swift; sourceTree = "<group>"; };
+		90123E63234435E4008A4FDC /* TouchEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchEvent.swift; sourceTree = "<group>"; };
 		9AD00AC4808C9FF416956319 /* Pods-CEPCombine_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEPCombine_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEPCombine_Tests/Pods-CEPCombine_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6247E0A3F99F3E9A9319CF8 /* Pods-CEPCombine_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEPCombine_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CEPCombine_Tests/Pods-CEPCombine_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		D726B5684E55A07936CF7A32 /* CEPCombine.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = CEPCombine.podspec; path = ../CEPCombine.podspec; sourceTree = "<group>"; };
+		D726B5684E55A07936CF7A32 /* CEPCombine.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CEPCombine.podspec; path = ../CEPCombine.podspec; sourceTree = "<group>"; };
 		D7B4B725407923A235B111E2 /* Pods_CEPCombine_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CEPCombine_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D71E4C1028C8A4C79FCB9B /* Pods-CEPCombine_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CEPCombine_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CEPCombine_Example/Pods-CEPCombine_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FC725DD6B03E9C4D09E89550 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FC725DD6B03E9C4D09E89550 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8225990FE0FB2B6C784A72A0 /* Pods_CEPCombine_Example.framework in Frameworks */,
+				90123E5D23443583008A4FDC /* Pods_CEPCombine_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +104,8 @@
 		275899807EAC48BCAC6F8C4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90123E5C23443583008A4FDC /* Pods_CEPCombine_Example.framework */,
+				90123E582344342F008A4FDC /* CEPCombine.framework */,
 				D7B4B725407923A235B111E2 /* Pods_CEPCombine_Example.framework */,
 				130676687F54FA8F9520E0DD /* Pods_CEPCombine_Tests.framework */,
 			);
@@ -113,6 +136,7 @@
 		607FACD21AFB9204008FA782 /* Example for CEPCombine */ = {
 			isa = PBXGroup;
 			children = (
+				90123E61234435CF008A4FDC /* Events */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -159,6 +183,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		90123E61234435CF008A4FDC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				90123E62234435E4008A4FDC /* PointEvent.swift */,
+				90123E63234435E4008A4FDC /* TouchEvent.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -171,6 +204,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				6DA25B90E800813CAC527347 /* [CP] Embed Pods Frameworks */,
+				90123E5F23443584008A4FDC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,10 +247,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 9T27QRB7Q6;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 9T27QRB7Q6;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -227,6 +263,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -363,6 +400,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90123E65234435E4008A4FDC /* TouchEvent.swift in Sources */,
+				90123E64234435E4008A4FDC /* PointEvent.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -451,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -497,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -510,7 +549,9 @@
 			baseConfigurationReference = E1D71E4C1028C8A4C79FCB9B /* Pods-CEPCombine_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9T27QRB7Q6;
 				INFOPLIST_FILE = CEPCombine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -525,7 +566,9 @@
 			baseConfigurationReference = 5973E7E9634E23F6CA5BAE14 /* Pods-CEPCombine_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9T27QRB7Q6;
 				INFOPLIST_FILE = CEPCombine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -539,6 +582,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AD00AC4808C9FF416956319 /* Pods-CEPCombine_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9T27QRB7Q6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -561,6 +605,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6247E0A3F99F3E9A9319CF8 /* Pods-CEPCombine_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9T27QRB7Q6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

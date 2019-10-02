@@ -1,0 +1,22 @@
+{
+  "name": "CEPCombine",
+  "version": "0.1.0",
+  "summary": "Complex Event Processing powered by Combine for Swift.",
+  "description": "CEPCombine is a Complex Event Processing tool based on the Combine framework for Swift.",
+  "homepage": "https://github.com/IsaacDouglas/CEPCombine",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Isaac Douglas": "isaacdouglas2015@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/IsaacDouglas/CEPCombine.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source_files": "CEPCombine/Classes/**/*"
+}

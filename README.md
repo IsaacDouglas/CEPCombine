@@ -17,12 +17,12 @@ CEPCombine is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CEPCombine'
+pod 'CEPCombine', :git => 'https://github.com/IsaacDouglas/CEPCombine.git'
 ```
 
 ## Author
 
-IsaacDouglas, isaacdouglas2015@gmail.com
+Isaac Douglas, isaacdouglas2015@gmail.com
 
 ## License
 
