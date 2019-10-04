@@ -64,16 +64,16 @@ extension Publisher {
             .map({ _ in self })
     }
 
-    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key), completion: @escaping (([[T.Element]]) -> Void)) where T == Self.Output {
-        self
-            .subscribe(completion: { values in
+    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key)) -> Publishers.Map<Self, [[T.Element]]> where T == Self.Output {
+        return self
+            .map({ values -> [[T.Element]] in
                 let dictionary = try! Dictionary(grouping: values, by: keyForValue)
-                completion(dictionary.map({ $0.value }))
+                return dictionary.map({ $0.value })
             })
     }
     
-    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool), completion: @escaping (([T.Element]) -> Void)) where T == Self.Output {
-        self
-            .subscribe(completion: { completion($0.sorted(by: by)) })
+    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool)) -> Publishers.Map<Self, [T.Element]> where T == Self.Output {
+        return self
+            .map({ $0.sorted(by: by) })
     }
 }

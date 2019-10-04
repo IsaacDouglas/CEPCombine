@@ -36,7 +36,8 @@ class ViewController: UIViewController {
             .getEvents(onType: PointEvent.self)
             .stream
             .collect(10)
-            .group(by: { $0 }, completion: { values in
+            .group(by: { $0 })
+            .subscribe(completion: { values in
                 print(values)
             })
         
@@ -44,7 +45,8 @@ class ViewController: UIViewController {
             .getEvents(onType: PointEvent.self)
             .stream
             .collect(10)
-            .order(by: { $0.data.x < $1.data.x }, completion: { values in
+            .order(by: { $0.data.x < $1.data.x })
+            .subscribe(completion: { values in
                 print(values.map({ $0.data }))
             })
     }
