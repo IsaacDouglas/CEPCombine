@@ -63,7 +63,7 @@ extension Publisher {
                     else { return (nil, nil) }
                 return (f, s)
             })
-            .filter({ $0 != nil && $1 != nil })
+            .filter({ $0.0 != nil && $0.1 != nil })
             .map({ ($0.0!, $0.1!) })
     }
     
