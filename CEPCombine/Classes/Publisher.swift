@@ -9,9 +9,14 @@
 import Foundation
 import Combine
 
+public typealias Map = Publishers.Map
+public typealias Filter = Publishers.Filter
+public typealias CollectByCount = Publishers.CollectByCount
+public typealias Merge = Publishers.Merge
+
 extension Publisher {
     
-    private func pairwise() -> Publishers.Map<Publishers.Filter<Self>, (Output, Output)> {
+    private func pairwise() -> Map<Filter<Self>, (Output, Output)> {
         var previous: Output? = nil
         let pair = self
             .filter({ element in
@@ -29,7 +34,8 @@ extension Publisher {
         return pair
     }
     
-    public func followedBy(predicate: @escaping (Self.Output, Self.Output) -> Bool) -> Publishers.Filter<Publishers.Map<Publishers.Filter<Self>, (Self.Output, Self.Output)>> {
+    public func followedBy(predicate: @escaping (Self.Output, Self.Output) -> Bool) ->
+        Filter<Map<Filter<Self>, (Self.Output, Self.Output)>> {
         return pairwise().filter(predicate)
     }
     
@@ -39,7 +45,8 @@ extension Publisher {
             .sink(receiveCompletion: { _ in }, receiveValue: completion)
     }
     
-    public func merge<T: Publisher>(with stream: T, completion: @escaping ((Self.Output, T.Output) -> Void)) where T.Failure == Self.Failure {
+    public func merge<T: Publisher>(with stream: T) ->
+        Map<Filter<Map<CollectByCount<Merge<Map<Self, Any>, Map<T, Any>>>, (Self.Output?, T.Output?)>>, (Self.Output, T.Output)> {
         
         let first = self
             .map({ $0 as Any })
@@ -47,16 +54,18 @@ extension Publisher {
         let second = stream
             .map({ $0 as Any })
         
-        first
+        return first
             .merge(with: second)
             .collect(2)
-            .subscribe(completion: { values in
+            .map({ values -> (Self.Output?, T.Output?) in
                 guard
                     let f = values.first(where: { $0 is Self.Output }).map({ $0 as! Self.Output }),
                     let s = values.first(where: { $0 is T.Output }).map({ $0 as! T.Output })
-                    else { return }
-                completion(f, s)
+                    else { return (nil, nil) }
+                return (f, s)
             })
+            .filter({ $0.0 != nil && $0.1 != nil })
+            .map({ ($0.0!, $0.1!) })
     }
     
     public func duplicate(_ count: Int = 2) -> [Self] {
@@ -64,7 +73,7 @@ extension Publisher {
             .map({ _ in self })
     }
 
-    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key)) -> Publishers.Map<Self, [[T.Element]]> where T == Self.Output {
+    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key)) -> Map<Self, [[T.Element]]> where T == Self.Output {
         return self
             .map({ values -> [[T.Element]] in
                 let dictionary = try! Dictionary(grouping: values, by: keyForValue)
@@ -72,7 +81,7 @@ extension Publisher {
             })
     }
     
-    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool)) -> Publishers.Map<Self, [T.Element]> where T == Self.Output {
+    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool)) -> Map<Self, [T.Element]> where T == Self.Output {
         return self
             .map({ $0.sorted(by: by) })
     }

@@ -26,10 +26,11 @@ class ViewController: UIViewController {
             .stream
         
         point
-            .merge(with: touch) { (p, t) in
+            .merge(with: touch)
+            .subscribe(completion: { (p, t) in
                 guard abs(t.timestamp.distance(to: p.0.timestamp)) <= 3 else { return }
                 print(t.data, p.0.data, p.1.data)
-        }
+            })
         
         
         CBEventManager
