@@ -16,7 +16,7 @@ public typealias Merge = Publishers.Merge
 
 extension Publisher {
     
-    private func pairwise() -> Publishers.Map<Filter<Self>, (Output, Output)> {
+    private func pairwise() -> Map<Filter<Self>, (Output, Output)> {
         var previous: Output? = nil
         let pair = self
             .filter({ element in
