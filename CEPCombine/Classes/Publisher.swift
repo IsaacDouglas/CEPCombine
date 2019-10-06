@@ -16,7 +16,7 @@ public typealias Merge = Publishers.Merge
 
 extension Publisher {
     
-    private func pairwise() -> Publishers.Map<Publishers.Filter<Self>, (Output, Output)> {
+    private func pairwise() -> Publishers.Map<Filter<Self>, (Output, Output)> {
         var previous: Output? = nil
         let pair = self
             .filter({ element in
@@ -34,7 +34,8 @@ extension Publisher {
         return pair
     }
     
-    public func followedBy(predicate: @escaping (Self.Output, Self.Output) -> Bool) -> Publishers.Filter<Publishers.Map<Publishers.Filter<Self>, (Self.Output, Self.Output)>> {
+    public func followedBy(predicate: @escaping (Self.Output, Self.Output) -> Bool) ->
+        Filter<Map<Filter<Self>, (Self.Output, Self.Output)>> {
         return pairwise().filter(predicate)
     }
     
@@ -72,7 +73,7 @@ extension Publisher {
             .map({ _ in self })
     }
 
-    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key)) -> Publishers.Map<Self, [[T.Element]]> where T == Self.Output {
+    public func group<T: Sequence, Key: Hashable>(by keyForValue: @escaping ((T.Element) throws -> Key)) -> Map<Self, [[T.Element]]> where T == Self.Output {
         return self
             .map({ values -> [[T.Element]] in
                 let dictionary = try! Dictionary(grouping: values, by: keyForValue)
@@ -80,7 +81,7 @@ extension Publisher {
             })
     }
     
-    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool)) -> Publishers.Map<Self, [T.Element]> where T == Self.Output {
+    public func order<T: Sequence>(by: @escaping ((T.Element, T.Element) -> Bool)) -> Map<Self, [T.Element]> where T == Self.Output {
         return self
             .map({ $0.sorted(by: by) })
     }
