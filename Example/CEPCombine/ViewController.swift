@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             .getEvents(onType: PointEvent.self)
             .stream
             .filter({ $0.data.y > 100 })
-            .followedBy(predicate: { $0.data.x < $1.data.x })
+            .followed(by: { $0.data.x < $1.data.x })
         
         let touch = CBEventManager
             .getEvents(onType: TouchEvent.self)
@@ -50,6 +50,22 @@ class ViewController: UIViewController {
             .subscribe(completion: { values in
                 print(values.map({ $0.data }))
             })
+        
+        
+        let events = [PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero),
+                      PointEvent(data: .zero)]
+        
+        CBEventManager
+            .addEvent(every: 1.0, with: events)
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,8 +12,12 @@ public protocol CBEvent {
     var timestamp: Date { get set }
 }
 
-extension CBEvent {
+public extension CBEvent {
     static var identifier: String {
         return String(describing: self)
+    }
+    
+    func addEvent() {
+        CBEventManager.addEvent(event: self)
     }
 }

@@ -11,13 +11,13 @@ import Combine
 
 public class CBEventStream<T> {
     
-    fileprivate let publisher: Publishers.Map<NotificationCenter.Publisher, T>
+    fileprivate let publisher: Map<NotificationCenter.Publisher, T>
     
-    public init(_ publisher: Publishers.Map<NotificationCenter.Publisher, T>) {
+    public init(_ publisher: Map<NotificationCenter.Publisher, T>) {
         self.publisher = publisher
     }
     
-    public var stream: Publishers.Map<NotificationCenter.Publisher, T> {
+    public var stream: Map<NotificationCenter.Publisher, T> {
         return publisher
     }
 }

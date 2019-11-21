@@ -14,11 +14,12 @@ public typealias Filter = Publishers.Filter
 public typealias CollectByCount = Publishers.CollectByCount
 public typealias Merge = Publishers.Merge
 
+@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
     
     private func pairwise() -> Map<Filter<Self>, (Output, Output)> {
         var previous: Output? = nil
-        let pair = self
+        return self
             .filter({ element in
                 if previous == nil {
                     previous = element
@@ -31,11 +32,9 @@ extension Publisher {
                 defer { previous = element }
                 return (previous!, element)
             })
-        return pair
     }
     
-    public func followedBy(predicate: @escaping (Self.Output, Self.Output) -> Bool) ->
-        Filter<Map<Filter<Self>, (Self.Output, Self.Output)>> {
+    public func followed(by predicate: @escaping (Self.Output, Self.Output) -> Bool) -> Filter<Map<Filter<Self>, (Self.Output, Self.Output)>> {
         return pairwise().filter(predicate)
     }
     
@@ -45,8 +44,7 @@ extension Publisher {
             .sink(receiveCompletion: { _ in }, receiveValue: completion)
     }
     
-    public func merge<T: Publisher>(with stream: T) ->
-        Map<Filter<Map<CollectByCount<Merge<Map<Self, Any>, Map<T, Any>>>, (Self.Output?, T.Output?)>>, (Self.Output, T.Output)> {
+    public func merge<T: Publisher>(with stream: T) -> Map<Filter<Map<CollectByCount<Merge<Map<Self, Any>, Map<T, Any>>>, (Self.Output?, T.Output?)>>, (Self.Output, T.Output)> {
         
         let first = self
             .map({ $0 as Any })

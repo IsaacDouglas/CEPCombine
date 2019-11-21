@@ -26,4 +26,23 @@ public class CBEventManager<T: CBEvent> {
             .post(name: Notification.Name(T.identifier), object: event)
     }
     
+    public static func addEvent(every time: TimeInterval, with events: [T]) {
+        guard !events.isEmpty else { return }
+        
+        var items = events
+        var anyCancellable: AnyCancellable?
+        
+        anyCancellable = Timer
+            .publish(every: time, on: .main, in: .defaultRunLoopMode)
+            .autoconnect()
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { _ in
+                if items.isEmpty {
+                    anyCancellable?.cancel()
+                }else{
+                    self.addEvent(event: items.first!)
+                    items.remove(at: 0)
+                }
+            })
+    }
 }
