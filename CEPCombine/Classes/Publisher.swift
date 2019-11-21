@@ -44,21 +44,21 @@ extension Publisher {
             .sink(receiveCompletion: { _ in }, receiveValue: completion)
     }
     
-    public func merge<T: Publisher>(with stream: T) -> Map<Filter<Map<CollectByCount<Merge<Map<Self, Any>, Map<T, Any>>>, (Self.Output?, T.Output?)>>, (Self.Output, T.Output)> {
+    public func merge<T: Publisher>(withStream: T) -> Map<Filter<Map<CollectByCount<Merge<Map<Self, (Int, Any)>, Map<T, (Int, Any)>>>, (Self.Output?, T.Output?)>>, (Self.Output, T.Output)> {
         
         let first = self
-            .map({ $0 as Any })
+            .map({ (1, $0) as (Int, Any) })
         
-        let second = stream
-            .map({ $0 as Any })
+        let second = withStream
+            .map({ (2, $0) as (Int, Any) })
         
         return first
             .merge(with: second)
             .collect(2)
             .map({ values -> (Self.Output?, T.Output?) in
                 guard
-                    let f = values.first(where: { $0 is Self.Output }).map({ $0 as! Self.Output }),
-                    let s = values.first(where: { $0 is T.Output }).map({ $0 as! T.Output })
+                    let f = values.first(where: { $0.0 == 1 }).map({ $0.1 as! Self.Output }),
+                    let s = values.first(where: { $0.0 == 2 }).map({ $0.1 as! T.Output })
                     else { return (nil, nil) }
                 return (f, s)
             })

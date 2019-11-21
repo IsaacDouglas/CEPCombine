@@ -10,10 +10,12 @@ import CEPCombine
 import UIKit
 
 class PointEvent: CBEvent {
+    var source: String?
     var timestamp: Date
     var data: CGPoint
 
-    init(data: CGPoint) {
+    init(data: CGPoint, source: String? = nil) {
+        self.source = source
         self.timestamp = Date()
         self.data = data
     }

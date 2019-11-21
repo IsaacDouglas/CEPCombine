@@ -11,11 +11,14 @@ import Combine
 
 public class CBEventManager<T: CBEvent> {
     
-    public static func getEvents(onType type: T.Type) -> CBEventStream<T> {
+    public static func getEvents(onType type: T.Type, source: String? = nil) -> CBEventStream<T> {
         let publisher = NotificationCenter
             .default
             .publisher(for: Notification.Name(type.identifier))
             .map({ $0.object as! T })
+            .filter({ event in
+                return (source == nil) ? true : (event.source == source)
+            })
         
         return CBEventStream(publisher)
     }
@@ -33,7 +36,7 @@ public class CBEventManager<T: CBEvent> {
         var anyCancellable: AnyCancellable?
         
         anyCancellable = Timer
-            .publish(every: time, on: .main, in: .defaultRunLoopMode)
+            .publish(every: time, on: .main, in: .default)
             .autoconnect()
             .receive(on: RunLoop.main)
             .sink(receiveValue: { _ in

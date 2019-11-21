@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol CBEvent {
+    var source: String? { get set }
     var timestamp: Date { get set }
 }
 

@@ -9,6 +9,7 @@
 import CEPCombine
 
 class TouchEvent: CBEvent {
+    var source: String?
     var timestamp: Date
     var data: TouchType
     
@@ -16,7 +17,8 @@ class TouchEvent: CBEvent {
         case began, ended
     }
     
-    init(data: TouchType) {
+    init(data: TouchType, source: String? = nil) {
+        self.source = source
         self.timestamp = Date()
         self.data = data
     }
